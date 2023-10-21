@@ -1,0 +1,4 @@
+enum UpadateType {
+  add,
+  remove,
+}

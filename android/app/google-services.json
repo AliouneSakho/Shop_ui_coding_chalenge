@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1016689965848",
+    "project_id": "plantui-f9dc6",
+    "storage_bucket": "plantui-f9dc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016689965848:android:5b3af52d588917f34ebc6d",
+        "android_client_info": {
+          "package_name": "sn.dodev.plants_ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC29m48QfOIPYzrD0aCgK1tKB8AvTZqJY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

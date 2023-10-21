@@ -1,0 +1,4 @@
+enum Views {
+  purchases,
+  favorites,
+}

@@ -1,0 +1,4 @@
+enum EmailAuthType {
+  login,
+  signing,
+}

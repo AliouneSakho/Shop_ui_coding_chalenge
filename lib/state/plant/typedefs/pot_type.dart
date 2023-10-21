@@ -1,0 +1,4 @@
+enum PotType {
+  ceramic,
+  plastic,
+}
