@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:plants_ui/state/auth/enums/email_auth_type.dart';
-import 'package:plants_ui/state/auth/providers/email_auth_type_provider.dart';
 import 'package:plants_ui/state/auth/providers/signing_formkey.dart';
 import 'package:plants_ui/state/constantes/url_paths.dart';
 import 'package:plants_ui/state/helpers/image_picker_herlper.dart';
+import 'package:plants_ui/state/image_upload/typedefs/image_provider.dart';
 import 'package:plants_ui/ui/componants/circle_avatar_profile.dart';
 import 'package:plants_ui/ui/screens/auth/componants/text_form_field_widget.dart';
 import 'package:plants_ui/ui/screens/onboarding/constants/strings.dart';
@@ -15,14 +14,8 @@ class SigningView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageSoure =
-        useState<ImageProvider>(const AssetImage(UrlPaths.avatar));
+    final imageSoure = useState<ImageSource>(const AssetImage(UrlPaths.avatar));
     final isObscure = useState(true);
-    useCallback(() {
-      ref.read(emailAuthTypeProvider.notifier).state = EmailAuthType.signing;
-
-      return null;
-    });
 
     return Form(
       key: ref.watch(signingFormKeyProvider),
@@ -42,7 +35,7 @@ class SigningView extends HookConsumerWidget {
                 onPressed: () async {
                   final file = await ImagePickerHelper.pickImage();
                   if (file != null) {
-                    imageSoure.value = file as ImageProvider;
+                    imageSoure.value = file;
                   }
                 },
                 label: const Text(

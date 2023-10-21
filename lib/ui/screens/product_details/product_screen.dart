@@ -21,8 +21,7 @@ class ProductDetailScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pageController = usePageController();
     final widgets = [
-      Image.asset(UrlPaths.plant1),
-      Image.asset(UrlPaths.plant1),
+      ...plant.imageUrls.map((url) => Image.network(url)),
     ];
 
     final colors = [

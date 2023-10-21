@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show immutable;
 @immutable
 class UrlPaths {
   static const String lottieLoadingAnimation =
-      'assets/lottie/loading_animation.lottie';
+      'assets/animations/loading_animation.json';
   static const String errorIllustration =
       'assets/images/error_illustration.png';
   static const String avatar = 'assets/images/avatar.png';

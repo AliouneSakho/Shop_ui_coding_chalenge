@@ -157,11 +157,14 @@ class PopUpsHandler {
         mainAxisSize: MainAxisSize.min,
         children: [
           ...PlantFilter.values.map(
-            (plantFilter) => FilterItem(plantFilter: plantFilter),
+            (plantFilter) => GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: FilterItem(plantFilter: plantFilter),
+            ),
           ),
           const SizedBox(height: 10),
           TextButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
             child: Text(
               'Apply Filter',
               style: theme.textTheme.titleLarge?.copyWith(

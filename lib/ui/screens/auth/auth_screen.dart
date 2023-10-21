@@ -9,6 +9,7 @@ import 'package:plants_ui/state/auth/providers/email_auth_type_provider.dart';
 import 'package:plants_ui/state/auth/providers/mail_and_password_auth_validation.dart';
 import 'package:plants_ui/state/helpers/pop_ups_helper.dart';
 import 'package:plants_ui/state/onboarding/constants/url_paths.dart';
+import 'package:plants_ui/state/onboarding/providers/page_index_provider.dart';
 import 'package:plants_ui/ui/componants/glassmorphism.dart';
 import 'package:plants_ui/ui/screens/auth/componants/adaptive_checkbox_tile_widget.dart';
 import 'package:plants_ui/ui/screens/auth/componants/tab_widget.dart';
@@ -118,7 +119,24 @@ class AuthScreen extends HookConsumerWidget {
                   ),
                   Center(
                     child: TextButton(
-                      onPressed: () => authStateNotifier.signingAnonymously(),
+                      onPressed: () async {
+                        final popupsInstance = PopUpsHandler.instance();
+                        popupsInstance.showProcessingOverlay(context);
+                        await Future.delayed(const Duration(seconds: 3));
+                        popupsInstance.hideProcessingOverlay();
+                        if (context.mounted) {
+                          Navigator.of(context)
+                              .pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                  builder: (_) => const MainScreen(),
+                                ),
+                                (route) => false,
+                              )
+                              .then(
+                                (_) => ref.refresh(pageIndexProvider),
+                              );
+                        }
+                      },
                       child: Text(
                         Strings.continueAsGuest,
                         style: TextStyle(
@@ -136,20 +154,7 @@ class AuthScreen extends HookConsumerWidget {
                       Expanded(
                         flex: 2,
                         child: ElevatedButton(
-                          onPressed: () async {
-                            final popupsInstance = PopUpsHandler.instance();
-                            popupsInstance.showProcessingOverlay(context);
-                            await Future.delayed(const Duration(seconds: 2));
-                            popupsInstance.hideProcessingOverlay();
-                            if (context.mounted) {
-                              Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                  builder: (_) => const MainScreen(),
-                                ),
-                                (route) => false,
-                              );
-                            }
-                          },
+                          onPressed: () => Navigator.pop(context),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                               Theme.of(context).colorScheme.error,
@@ -181,15 +186,19 @@ class AuthScreen extends HookConsumerWidget {
                             if (isFormValid) {
                               final popupsInstance = PopUpsHandler.instance();
                               popupsInstance.showProcessingOverlay(context);
-                              await Future.delayed(const Duration(seconds: 2));
+                              await Future.delayed(const Duration(seconds: 3));
                               popupsInstance.hideProcessingOverlay();
                               if (context.mounted) {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                    builder: (_) => const MainScreen(),
-                                  ),
-                                  (route) => false,
-                                );
+                                Navigator.of(context)
+                                    .pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                        builder: (_) => const MainScreen(),
+                                      ),
+                                      (route) => false,
+                                    )
+                                    .then(
+                                      (_) => ref.refresh(pageIndexProvider),
+                                    );
                               }
                               // switch (authType) {
                               //   case AuthType.mailAndPassword:

@@ -50,7 +50,8 @@ const plant = Plant(
       'Install our desktop application to drag and drop 1000s of images at once.',
   price: 12.55,
   imageUrls: [
-    'https://st3.depositphotos.com/1055085/16413/i/450/depositphotos_164138688-stock-photo-miniature-artificial-tree.jpg',
+    'https://firebasestorage.googleapis.com/v0/b/plantui-f9dc6.appspot.com/o/plant1.png?alt=media&token=68e4279c-32d6-4028-b721-53da73cb9176',
+    'https://firebasestorage.googleapis.com/v0/b/plantui-f9dc6.appspot.com/o/jade1%20(1).png?alt=media&token=7ff7cff6-3fc8-4780-8e52-4a26ee298628',
   ],
   height: 5.5,
   temperature: 20.0,
